@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const movieSchema = new mongoose.Schema(
   {
@@ -30,16 +31,28 @@ const movieSchema = new mongoose.Schema(
     image: {
       type: String,
       required: true,
+      validate: {
+        validator: (i) => validator.isURL(i),
+        message: 'Поле должно содержать ссылку',
+      },
     },
 
     trailerLink: {
       type: String,
       required: true,
+      validate: {
+        validator: (i) => validator.isURL(i),
+        message: 'Поле должно содержать ссылку',
+      },
     },
 
     thumbnail: {
       type: String,
       required: true,
+      validate: {
+        validator: (i) => validator.isURL(i),
+        message: 'Поле должно содержать ссылку',
+      },
     },
 
     owner: {

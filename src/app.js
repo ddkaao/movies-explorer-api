@@ -9,13 +9,12 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const router = require('./routes/main');
 const { error } = require('./middlewares/error');
 
+const { NODE_ENV, URI, PORT } = require('./utils/constants');
+
 const app = express();
 app.use(cors());
 
-const PORT = 3000;
-const URI = 'mongodb://127.0.0.1:27017/bitfilmsdb';
-
-mongoose.connect(URI);
+mongoose.connect(`${NODE_ENV === 'production' ? URI : 'mongodb://127.0.0.1:27017/bitfilmsdb'}`);
 
 app.use(express.json());
 
