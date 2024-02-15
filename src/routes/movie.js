@@ -20,12 +20,12 @@ router.post('/', celebrate({
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
     thumbnail: Joi.string().required().regex(REGEX_URL),
-    movieId: Joi.string().hex().length(24),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 router.delete('/:movieId', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().hex().length(24),
+    movieId: Joi.string().hex().length(24).required(),
   }),
 }), deleteSavedMovie);
 
